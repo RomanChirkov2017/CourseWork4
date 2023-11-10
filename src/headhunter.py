@@ -4,6 +4,7 @@ import requests
 
 from src.abstract_classes import ApiJobSites
 
+
 class HeadHunterAPI(ApiJobSites):
     """Класс для работы с API HeadHunter."""
 
@@ -55,7 +56,8 @@ class HeadHunterAPI(ApiJobSites):
                 "salary_from": vacancy["salary"]["from"] if vacancy["salary"]["from"] is not None else 0,
                 "salary_to": vacancy["salary"]["to"] if vacancy["salary"]["to"] is not None else vacancy["salary"]["from"],
                 "currency": vacancy["salary"]["currency"] if vacancy["salary"] else "",
-                "description": vacancy["snippet"]["requirement"] if vacancy["snippet"]["requirement"] is not None else "",
+                "description": vacancy["snippet"]["requirement"].replace('<highlighttext>', '').replace('</highlighttext>', '')
+                if vacancy["snippet"]["requirement"] is not None else "",
             }
             formatted_vacancies.append(formatted_vacancy)
         return formatted_vacancies

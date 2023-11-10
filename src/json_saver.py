@@ -1,5 +1,6 @@
 import json
 
+
 from src.abstract_classes import FileSaver
 from src.vacancy import Vacancy
 
@@ -20,7 +21,7 @@ class JsonSaver(FileSaver):
 
     def add_vacancy(self) -> list:
         """Добавляет вакансии в список vacancy_list."""
-        with open(self.filename, "r") as file:
+        with open(self.filename, "r", encoding="UTF-8") as file:
             vacancies = json.load(file)
 
         for vacancy in vacancies:

@@ -7,7 +7,7 @@ from src.abstract_classes import ApiJobSites
 
 API_KEY = os.getenv("SUPERJOB_API_KEY")
 
-class SUperJobAPI(ApiJobSites):
+class SuperJobAPI(ApiJobSites):
     """Класс для работы с API SuperJob."""
 
     url = "https://api.superjob.ru/2.0/vacancies"
@@ -57,7 +57,8 @@ class SUperJobAPI(ApiJobSites):
                 "salary_from": vacancy["payment_from"] if vacancy["payment_from"] is not None else 0,
                 "salary_to": vacancy["payment_to"] if vacancy["payment_to"] != 0 else vacancy["payment_from"],
                 "currency": vacancy["currency"].upper(),
-                "description": vacancy["candidat"].lower,
+                "description": vacancy["candidat"].lower(),
             }
             formatted_vacancies.append(formatted_vacancy)
         return formatted_vacancies
+    
